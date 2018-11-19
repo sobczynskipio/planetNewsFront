@@ -11,9 +11,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'planetNews';
-  news;
+  users;
+  naszeMiastoNews;
 
   constructor(private newsService: NewsService) {
-      this.news = newsService.getNews();
+      this.users = newsService.getNews();
+      //this.naszeMiastoNews = newsService.getLodzNews().subscribe((data: String) => {console.log(data)});
    }
 }

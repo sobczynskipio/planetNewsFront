@@ -1,17 +1,47 @@
 import { Directive, OnInit, ElementRef } from '@angular/core';
+import { NewsService } from "./rest_service/news.service";
+import { News } from "src/app/models/news";
 
 @Directive({
   selector: '[appCesium]'
 })
 export class CesiumDirective implements OnInit{
+	news;
+	viewer;
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private newsService: NewsService) { 
+  		//this.news = newsService.getLodzNews();
+  		newsService.getLodzNews().subscribe((data: News[]) => {
+  			this.news = data; console.dir(this.news[0].imageLink)
+
+		var citizensBankPark = this.viewer.entities.add({position : Cesium.Cartesian3.fromDegrees(-75.166493, 39.9060534),
+			  billboard : {
+			    image : this.news[0].imageLink,//'assets/images/Philadelphia_Phillies.png',
+			    width : 64,
+			    height : 64
+			  },
+			  label : {
+			    text : 'Citizens Bank Park',
+			    font : '14pt monospace',
+			    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+			    outlineWidth : 2,
+			    verticalOrigin : Cesium.VerticalOrigin.TOP,
+			    pixelOffset : new Cesium.Cartesian2(0, 32)
+			  }
+			});
+
+		this.viewer.zoomTo(citizensBankPark);
+
+  		});
+  }
 
   ngOnInit() {
-  // Put initialization code for the Cesium viewer here
-  const viewer = new Cesium.Viewer(this.el.nativeElement);
+  	console.log("inicjuje");
+	// Put initialization code for the Cesium viewer here3
+	const viewer = new Cesium.Viewer(this.el.nativeElement);
+	this.viewer = viewer;
 
-  let wyoming = viewer.entities.add({
+    /*let wyoming = viewer.entities.add({
 	  name : 'Wyoming',
 	  polygon : {
 	    hierarchy : Cesium.Cartesian3.fromDegreesArray([
@@ -32,7 +62,25 @@ export class CesiumDirective implements OnInit{
 	    outline : true,
 	    outlineColor : Cesium.Color.BLACK
 	  }
-	});
-  viewer.zoomTo(wyoming);
+	});*/
+
+	/*var citizensBankPark = viewer.entities.add({position : Cesium.Cartesian3.fromDegrees(-75.166493, 39.9060534),
+	  billboard : {
+	    image : 'assets/images/Philadelphia_Phillies.png',
+	    width : 64,
+	    height : 64
+	  },
+	  label : {
+	    text : 'Citizens Bank Park',
+	    font : '14pt monospace',
+	    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+	    outlineWidth : 2,
+	    verticalOrigin : Cesium.VerticalOrigin.TOP,
+	    pixelOffset : new Cesium.Cartesian2(0, 32)
+	  }
+	});*/
+
+
+  //viewer.zoomTo(citizensBankPark);
   }
 }
