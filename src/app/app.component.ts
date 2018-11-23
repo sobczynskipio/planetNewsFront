@@ -15,7 +15,7 @@ export class AppComponent {
   naszeMiastoNews;
 
   constructor(private newsService: NewsService) {
-      this.users = newsService.getNews();
+      //this.users = newsService.getNews();
       //this.naszeMiastoNews = newsService.getLodzNews().subscribe((data: String) => {console.log(data)});
    }
 }

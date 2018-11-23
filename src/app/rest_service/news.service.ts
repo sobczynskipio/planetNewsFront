@@ -11,15 +11,6 @@ export class NewsService {
    constructor(private http: HttpClient) {
    }
 
-   getNews(): Observable<User[]> {
-      return this.http.get<User[]>("https://jsonplaceholder.typicode.com/users")
-         .pipe(
-          catchError(this.handleError('getHeroes', []))
-         	//map((res: Response) => res.json()))
-         	//catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-         );
-   }
-
    getLodzNews(): Observable<News[]> {
       return this.http.get<News[]>("http://localhost:8080/news/rss")
          .pipe(
