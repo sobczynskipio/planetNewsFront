@@ -1,9 +1,16 @@
-export default class Billboard{
-	  private position : Cesium.Cartesian3;//fromDegrees(this.news[0].longitude, this.news[0].latitude),
-	  private billboardImage : BillboardImage;
-	  private billboardLabel: BillboardLabel;
+import { BillboardImage } from "src/app/models/billboard/billboardImage";
+import { BillboardLabel } from "src/app/models/billboard/billboardLabel";
+import { Injectable } from '@angular/core';
 
-	  constructor(imageLink: string, longitude: number, latitude: longitude) {
+@Injectable()
+export class Billboard{
+	  private position : any;
+	  private billboard : BillboardImage;
+	  private label: BillboardLabel;
 
+	  constructor(imageLink: string, longitude: number, latitude: number) {
+	  	this.position = Cesium.Cartesian3.fromDegrees(longitude, latitude);
+	  	this.billboard = new BillboardImage(imageLink);
+	  	this.label = new BillboardLabel("Some Text");
 	  }
 }

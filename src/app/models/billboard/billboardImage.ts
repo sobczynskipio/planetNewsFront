@@ -1,10 +1,10 @@
-export default class BillboardImage{
-    private imageLink: string;//"http://localhost:8080"+this.news[0].imageLink,//'assets/images/Philadelphia_Phillies.png',
-    private width: number; //64,
-	private height: number; //64
+export class BillboardImage{
+    private image: string;
+    private width: number;
+	private height: number;
 
-	constructor(public imageLink: string) {
-		this.imageLink = imageLink;
+	constructor(imageLink: string) {
+		this.image = imageLink;
 		this.width = 64;
 		this.height = 64;
 	}

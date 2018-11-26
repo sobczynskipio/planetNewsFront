@@ -1,14 +1,17 @@
-export default class BillboardLabel{
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class BillboardLabel{
 
     private text : string;
     private font : string;
-    private style: Cesium.LabelStyle;
+    private style: any;//Cesium.LabelStyle;
     private outlineWidth: number;
-    private verticalOrigin: Cesium.VerticalOrigin;
-    private pixelOffset: Cesium.Cartesian2;
+    private verticalOrigin: any;//Cesium.VerticalOrigin;
+    private pixelOffset: any;//Cesium.Cartesian2;
 
-    constructor() {
-        this.text = 'Citizens Bank Park';
+    constructor(text : string) {
+        this.text = text;
 	    this.font = '14pt monospace';
 	    this.style = Cesium.LabelStyle.FILL_AND_OUTLINE;
 	    this.outlineWidth = 2;

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { User } from "src/app/models/user";
 import { News } from "src/app/models/news";
 import {  catchError, map, tap } from 'rxjs/operators';
  
