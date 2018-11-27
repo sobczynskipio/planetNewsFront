@@ -25,7 +25,13 @@ export class CesiumDirective implements OnInit{
 
   ngOnInit() {
 	// Put initialization code for the Cesium viewer here3
-	const viewer = new Cesium.Viewer(this.el.nativeElement);
+	const viewer = new Cesium.Viewer(this.el.nativeElement, {
+	    imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
+	        url : 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
+	    }),
+	    baseLayerPicker : false,
+	    infoBox : false
+	});
 	this.viewer = viewer;
   }
 }
